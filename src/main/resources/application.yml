@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://mysql.ms.com:3306/ec_user?tinyInt1isBit=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+    username: ec_user
+    password: ec_user
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      minimum-idle: 3
+      maximum-pool-size: 24
+      pool-name: ${spring.application.name}-CP
+      idle-timeout: 10000
+      cachePrepStmts: true
+      prepStmtCacheSize: 250
+      prepStmtCacheSqlLimit: 2048
+      leakDetectionThreshold: 2000
+
+  thymeleaf:
+    cache: false
+
+server:
+  port: 8888
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+  mapperLocations: classpath*:com/kyexpress/ec/user/provider/mapper/*.xml,com/kyexpress/ec/register/provider/mapper/*.xml,com/kyexpress/ec/account/provider/mapper/*.xml
+
+
+
+netty:
+  #监听websocket连接的端口
+  port: 11111
+  #此处要用电脑的ip,不然手机访问会出现问题
+  ws: ws://localhost:${netty.port}/ws
