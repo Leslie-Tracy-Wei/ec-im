@@ -2,9 +2,9 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://mysql.ms.com:3306/ec_user?tinyInt1isBit=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
-    username: ec_user
-    password: ec_user
+    url: jdbc:mysql://10.83.128.16:3306/ec_draw?tinyInt1isBit=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+    username: ec_draw
+    password: ec_draw
     hikari:
       connection-test-query: SELECT 1 FROM DUAL
       minimum-idle: 3
@@ -19,6 +19,16 @@ spring:
   thymeleaf:
     cache: false
 
+  redis:
+    host: 10.83.10.241
+    port: 6379
+    password: Welcome1
+    database: 9
+    timeout: 30000
+    pool:
+      max-active: 20
+      max-idle: 5
+
 server:
   port: 8888
 
@@ -27,7 +37,7 @@ mybatis:
     map-underscore-to-camel-case: true
     default-fetch-size: 100
     default-statement-timeout: 30
-  mapperLocations: classpath*:com/kyexpress/ec/user/provider/mapper/*.xml,com/kyexpress/ec/register/provider/mapper/*.xml,com/kyexpress/ec/account/provider/mapper/*.xml
+  mapperLocations: classpath*:mapper/*.xml
 
 
 

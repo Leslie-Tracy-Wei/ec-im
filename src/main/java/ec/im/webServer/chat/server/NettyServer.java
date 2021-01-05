@@ -1,5 +1,6 @@
 package ec.im.webServer.chat.server;
 
+import ec.im.webServer.chat.handler.OnlineWebSocketHandler;
 import ec.im.webServer.chat.handler.WebSocketHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -44,8 +45,8 @@ public class NettyServer {
                             //以块的方式来写的处理器
                             pipeline.addLast(new ChunkedWriteHandler());
                             pipeline.addLast(new HttpObjectAggregator(8192));
-                            //ch.pipeline().addLast(new OnlineWebSocketHandler());//添加在线客服聊天消息处理类
-                            pipeline.addLast(new WebSocketHandler());//添加测试的聊天消息处理类
+                            pipeline.addLast(new OnlineWebSocketHandler());//添加在线客服聊天消息处理类
+//                            pipeline.addLast(new WebSocketHandler());//添加测试的聊天消息处理类
                             pipeline.addLast(new WebSocketServerProtocolHandler("/ws", null, true, 65536 * 10));
                         }
                     });

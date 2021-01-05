@@ -43,13 +43,13 @@ public class MapperMethodGenerator {
             writer.write(addUpdateByPrimaryKeySelective(table, idProertyClassType));
         }
 
-        if (!existMethodSet.contains("updateWithCondition")) {
-            writer.write(addUpdateByPrimaryKeyWithCondition(table, idProertyClassType));
-        }
-
-        if (!existMethodSet.contains("updateSelectiveWithCondition")) {
-            writer.write(addUpdateByPrimaryKeySelectiveWithCondition(table, idProertyClassType));
-        }
+//        if (!existMethodSet.contains("updateWithCondition")) {
+//            writer.write(addUpdateByPrimaryKeyWithCondition(table, idProertyClassType));
+//        }
+//
+//        if (!existMethodSet.contains("updateSelectiveWithCondition")) {
+//            writer.write(addUpdateByPrimaryKeySelectiveWithCondition(table, idProertyClassType));
+//        }
 
         if (!existMethodSet.contains("delete")) {
             writer.write(addDeleteByPrimaryKey(table, idProertyClassType));
@@ -766,27 +766,27 @@ public class MapperMethodGenerator {
 
 
 
-    private static String addUpdateByPrimaryKeyWithCondition(CommonTable table, String idProertyClassType) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n <update id=\"updateWithCondition\" parameterType=\"" + "com.kyexpress.framework.model.Updation" + "\" >");
-        sb.append("\n update " + table.getTable());
-        sb.append(getColumns4Update(table.getTable(),table.getColumnList(), "data", false));
-        sb.append("\n where " + getKeyCondition(table.getIdColumn(), "condition"));
-        sb.append("\n " + getConditions4Update(table.getColumnList(),null));
-        sb.append("\n</update>\n");
-        return sb.toString();
-    }
-
-    private static String addUpdateByPrimaryKeySelectiveWithCondition(CommonTable table, String idProertyClassType) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n <update id=\"updateSelectiveWithCondition\" parameterType=\"" + "com.kyexpress.framework.model.Updation" + "\" >");
-        sb.append("\n update " + table.getTable());
-        sb.append(getColumns4Update(table.getTable(),table.getColumnList(), "data", true));
-        sb.append("\n where " + getKeyCondition(table.getIdColumn(), "condition"));
-        sb.append("\n " + getConditions4Update(table.getColumnList(), null));
-        sb.append("\n</update>\n");
-        return sb.toString();
-    }
+//    private static String addUpdateByPrimaryKeyWithCondition(CommonTable table, String idProertyClassType) {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("\n <update id=\"updateWithCondition\" parameterType=\"" + "com.kyexpress.framework.model.Updation" + "\" >");
+//        sb.append("\n update " + table.getTable());
+//        sb.append(getColumns4Update(table.getTable(),table.getColumnList(), "data", false));
+//        sb.append("\n where " + getKeyCondition(table.getIdColumn(), "condition"));
+//        sb.append("\n " + getConditions4Update(table.getColumnList(),null));
+//        sb.append("\n</update>\n");
+//        return sb.toString();
+//    }
+//
+//    private static String addUpdateByPrimaryKeySelectiveWithCondition(CommonTable table, String idProertyClassType) {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("\n <update id=\"updateSelectiveWithCondition\" parameterType=\"" + "com.kyexpress.framework.model.Updation" + "\" >");
+//        sb.append("\n update " + table.getTable());
+//        sb.append(getColumns4Update(table.getTable(),table.getColumnList(), "data", true));
+//        sb.append("\n where " + getKeyCondition(table.getIdColumn(), "condition"));
+//        sb.append("\n " + getConditions4Update(table.getColumnList(), null));
+//        sb.append("\n</update>\n");
+//        return sb.toString();
+//    }
 
     private static String getKeyCondition(CommonTableColumn idColumn, String prefix) {
         String addPrefix = StringUtils.isNotEmpty(prefix) ? (prefix + ".") : "";
